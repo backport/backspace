@@ -51,10 +51,10 @@ class Controller_Login extends AdminController
             }
         }
 
-        $view = \View::forge("login.html.twig");
-        $view->login_uri = \Uri::current();
-
-        return \Response::forge($view);
+        $this->set_template("login");
+        $this->set_page_title(\Lang::line("login"));
+        
+        return \Response::forge($this->get_view());
     }
 
 }

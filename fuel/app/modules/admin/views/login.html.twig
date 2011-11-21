@@ -20,7 +20,7 @@
         <h3>{{ lang('login') }}</h3>
     </div>
     <div class="modal-body">
-        <form action="{{ login_uri }}" method="POST" id="login_form" class="form-stacked">
+        <form action="{{ current_uri() }}" method="POST" id="login_form" class="form-stacked">
             <fieldset>
                 <div class="clearfix">
                     <label for="username">{{ lang('username') }} *</label>
