@@ -11,6 +11,7 @@ class View_Twig extends \Parser\View_Twig
         $parser->addFunction("img", new Twig_Function_Function("Asset::img"));
         $parser->addFunction("js", new Twig_Function_Function("Asset::js"));
         $parser->addFunction("current_uri", new Twig_Function_Function("Uri::current"));
+        $parser->addFunction("css", new Twig_Function_Function("Asset::css"));
         
         return $parser;
     }

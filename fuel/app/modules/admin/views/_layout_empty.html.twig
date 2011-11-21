@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ page_title }} | backspace blogging platform</title>
+        <meta name="generator" content="backspace blogging platform">
+
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+        {{ css('admin.css') }}
+        {{ js('jquery.min.js') }}
+        {% block javascript %}{% endblock %}
+    </head>
+
+    <body>
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

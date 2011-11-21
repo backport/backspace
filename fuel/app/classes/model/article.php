@@ -23,5 +23,10 @@ class Model_Article extends \Orm\Model
     );
     
     protected static $_table_name = "article";
+    
+    public static function find_all()
+    {
+        return static::find()->order_by("id", "DESC")->get();
+    }
 
 }

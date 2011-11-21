@@ -26,11 +26,11 @@ class Controller_Articles extends AdminController
 
     public function action_index()
     {
-        $this->set_template("category_index");
-        $this->set_page_title(\Lang::line("categories"));
+        $this->set_template("article_index");
+        $this->set_page_title(\Lang::line("articles"));
         
-        $cats = \Model_Category::find_all();
-        $this->get_view()->cats = $cats;
+        $articles = \Model_Article::find_all();
+        $this->get_view()->articles = $articles;
         
         return \Response::forge($this->get_view());
     }

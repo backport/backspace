@@ -36,4 +36,10 @@ return array(
     "published" => "Published",
     "published_hint" => "If you do not publish your article, it will be saved as a draft.",
     "comments_hint" => "Allow your readers to comment your article",
+    "articles" => "Articles",
+    "no_articles_found" => "No articles could be found",
+    "username" => "User name",
+    "password" => "Password",
+    "login" => "Login",
+    "log_in" => "Log me in",
 );

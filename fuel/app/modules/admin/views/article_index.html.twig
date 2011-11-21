@@ -1,0 +1,41 @@
+{% extends "_layout.html.twig" %}
+
+{% block content %}
+<div class="well">
+    <h2>{{ lang('articles') }}</h2>
+    
+    <a href="{{ uri('admin/articles/create') }}" class="btn success pull-right">
+        {{ lang('write_article') }}
+    </a>
+    
+    <table class="zebra-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ lang('title') }}</th>
+                <th>{{ lang('operations') }}</th>
+            </tr>
+        </thead>    
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>
+                    <a href="{{ uri('admin/articles/edit') }}?id={{ article.id }}" class="btn primary">
+                        {{ lang('edit') }}
+                    </a>
+                    <a href="{{ uri('admin/articles/delete') }}?id={{ article.id }}" class="btn danger">
+                        {{ lang('delete') }}
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">{{ lang('no_articles_found') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

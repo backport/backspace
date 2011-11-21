@@ -4,12 +4,32 @@
 <script>
     $(document).ready(function() {
         $("#title").blur(function() {
-           $.getJSON("{{ uri('admin/ajax/slug') }}", {
-               title: $("#title").val()
-           },
-           function(res) {
+            $.getJSON("{{ uri('admin/ajax/slug') }}", {
+                title: $("#title").val()
+            },
+            function(res) {
                 $("#slug").val(res);
-           }); 
+            }); 
+        });
+        
+        $("#content_article_content").hide();
+        
+        $("#tab_article_meta").click(function() {
+            $("#tab_article_content").removeClass("active");
+            $("#tab_article_meta").addClass("active");
+            
+            $("#content_article_content").fadeOut("fast", function() {
+                $("#content_article_meta").fadeIn("fast");
+            });
+        });
+        
+        $("#tab_article_content").click(function() {
+            $("#tab_article_meta").removeClass("active");
+            $("#tab_article_content").addClass("active");
+                    
+            $("#content_article_meta").fadeOut("fast", function() {
+                $("#content_article_content").fadeIn("fast");
+            });
         });
     });
 </script>
@@ -17,87 +37,98 @@
 
 {% block content %}
 <div class="well">
+    <ul class="tabs">
+        <li class="active" id="tab_article_meta"><a href="#">{{ lang('article_meta') }}</a></li>
+        <li id="tab_article_content"><a href="#">{{ lang('article_content') }}</a></li>
+    </ul>
     <form action="{{ current_uri() }}{% if id != '' %}?id={{ id }}{% endif %}" method="POST" class="form-stacked">
-        <fieldset>
-            <legend>{{ lang('article_meta') }}</legend>
-            <div class="clearfix {% if title_message != "" %}error{% endif %}">
-                <label for="title">{{ lang('title') }} *</label>
-                <div class="input">
-                    <input type="text" class="xlinput" name="title" id="title" placeholder="{{ lang('placeholder_article_title') }}" value="{{ title_value }}">
-                    {% if title_message != "" %}
-                        <span class="help-inline">{{ title_message }}</span>
-                    {% endif %}
-                </div>
+        <div id="content_article_meta">
+
+            <fieldset>
+                <legend>{{ lang('article_meta') }}</legend>
+                <div class="clearfix {% if title_message != "" %}error{% endif %}">
+                     <label for="title">{{ lang('title') }} *</label>
+                              <div class="input">
+                                  <input type="text" class="xlinput" name="title" id="title" placeholder="{{ lang('placeholder_article_title') }}" value="{{ title_value }}">
+                                  {% if title_message != "" %}
+                                  <span class="help-inline">{{ title_message }}</span>
+                                  {% endif %}
+                              </div>
+                          </div>
+                          <div class="clearfix {% if slug_message != "" %}error{% endif %}">
+                               <label for="title">{{ lang('slug') }} *</label>
+                              <div class="input">
+                                  <input type="text" class="xlinput" name="slug" id="slug" value="{{ slug_value }}">
+                                  {% if slug_message != "" %}
+                                  <span class="help-inline">{{ slug_message }}</span>
+                                  {% endif %}
+                              </div>
+                          </div>
+                          <div class="clearfix {% if category_message != "" %}error{% endif %}">
+                               <label for="category">{{ lang('category') }} *</label>
+                              <div class="input">
+                                  <select name="category" id="category">
+                                      {% for cat in cats %}
+                                      <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                      {% endfor %}
+                                  </select>
+                                  {% if category_message != "" %}
+                                  <span class="help-inline">{{ category_message }}</span>
+                                  {% endif %}
+                              </div>
+                          </div>
+                </fieldset>
+                <fieldset>
+                    <legend>{{ lang('article_settings') }}</legend>
+                    <div class="clearfix">
+                        <div class="input">
+                            <input type="checkbox" name="comments_allowed" id="comments_allowed" checked>
+                            {{ lang('comments_allowed') }}
+                            <span class="help-inline">{{ lang('comments_hint') }}</span>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="input">
+                            <input type="checkbox" name="published" id="published" checked>
+                            {{ lang('published') }}
+                            <span class="help-inline">{{ lang('published_hint') }}</span>
+                        </div>
+                    </div>
+
+                </fieldset>
             </div>
-            <div class="clearfix {% if slug_message != "" %}error{% endif %}">
-                <label for="title">{{ lang('slug') }} *</label>
-                <div class="input">
-                    <input type="text" class="xlinput" name="slug" id="slug" value="{{ slug_value }}">
-                    {% if slug_message != "" %}
-                        <span class="help-inline">{{ slug_message }}</span>
-                    {% endif %}
-                </div>
+            <div id="content_article_content">
+                <fieldset>
+                    <legend>{{ lang('article_content') }}</legend>
+                    <div class="clearfix {% if preview_message != "" %}error{% endif %}">
+                         <label for="preview">{{ lang('preview') }}</label>
+                        <div class="input">
+                            <textarea class="xlinput" name="preview" style="width: 100%;" id="preview">{{ preview_value }}</textarea>
+                            {% if slug_message != "" %}
+                            <span class="help-inline">{{ preview_message }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="clearfix {% if body_message != "" %}error{% endif %}">
+                         <label for="body">{{ lang('body') }} *</label>
+                        <div class="input">
+                            <textarea class="xlinput" style="width: 100%; height: 300px;" name="body" id="body">{{ body_value }}</textarea>
+                            {% if body_message != "" %}
+                            <span class="help-inline">{{ body_message }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </fieldset>
             </div>
-            <div class="clearfix {% if category_message != "" %}error{% endif %}">
-                <label for="category">{{ lang('category') }} *</label>
-                <div class="input">
-                    <select name="category" id="category">
-                        {% for cat in cats %}
-                            <option value="{{ cat.id }}">{{ cat.title }}</option>
-                        {% endfor %}
-                    </select>
-                    {% if category_message != "" %}
-                        <span class="help-inline">{{ category_message }}</span>
-                    {% endif %}
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>{{ lang('article_content') }}</legend>
-            <div class="clearfix {% if preview_message != "" %}error{% endif %}">
-                <label for="preview">{{ lang('preview') }}</label>
-                <div class="input">
-                    <textarea class="xlinput" name="preview" style="width: 100%;" id="preview">{{ preview_value }}</textarea>
-                    {% if slug_message != "" %}
-                        <span class="help-inline">{{ preview_message }}</span>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="clearfix {% if body_message != "" %}error{% endif %}">
-                <label for="body">{{ lang('body') }} *</label>
-                <div class="input">
-                    <textarea class="xlinput" style="width: 100%; height: 300px;" name="body" id="body">{{ body_value }}</textarea>
-                    {% if body_message != "" %}
-                        <span class="help-inline">{{ body_message }}</span>
-                    {% endif %}
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>{{ lang('article_settings') }}</legend>
-            <div class="clearfix">
-                <div class="input">
-                    <input type="checkbox" name="comments_allowed" id="comments_allowed" checked>
-                    {{ lang('comments_allowed') }}
-                    <span class="help-inline">{{ lang('comments_hint') }}</span>
-                </div>
-            </div>
-            <div class="clearfix">
-                <div class="input">
-                    <input type="checkbox" name="published" id="published" checked>
-                    {{ lang('published') }}
-                    <span class="help-inline">{{ lang('published_hint') }}</span>
-                </div>
-            </div>
+
             <div class="actions">
                 <input type="reset" class="btn" value="{{ lang('reset') }}">
                 <input type="submit" class="btn primary" value="{{ lang('apply') }}">
             </div>
-        </fieldset>
-    </form>
-    
-    <span class="help-block">
-        * {{ lang('required_fields_hint') }}
-    </span>
-</div>
-{% endblock %}
+        </form>
+
+        <span class="help-block">
+            * {{ lang('required_fields_hint') }}
+        </span>
+    </div>
+    {% endblock %}

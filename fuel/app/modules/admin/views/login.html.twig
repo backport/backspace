@@ -1,5 +1,44 @@
-<form action="{{ login_uri }}" method="POST">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="submit" value="Login">
-</form>
+{% extends "_layout_empty.html.twig" %}
+
+{% block javascript %}
+{{ js('modal.js') }}
+<script>
+    $(document).ready(function() {
+        $('#login').modal('show');
+        
+        $("#loginbtn").click(function() {
+            $("#login").modal("hide");
+            $("#login_form").submit();
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="modal hide fade" style="display: none;" id="login">
+    <div class="modal-header">
+        <h3>{{ lang('login') }}</h3>
+    </div>
+    <div class="modal-body">
+        <form action="{{ login_uri }}" method="POST" id="login_form" class="form-stacked">
+            <fieldset>
+                <div class="clearfix">
+                    <label for="username">{{ lang('username') }} *</label>
+                    <div class="input">
+                        <input type="text" name="username">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="password">{{ lang('password') }} *</label>
+                    <div class="input">
+                        <input type="password" name="password">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <input type="button" id="loginbtn" class="btn primary" value="{{ lang('log_in') }}">
+    </div>
+</div>
+{% endblock %}
