@@ -69,7 +69,11 @@
                               <div class="input">
                                   <select name="category" id="category">
                                       {% for cat in cats %}
-                                      <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                        {% if category_value == cat.id %}
+                                            <option value="{{ cat.id }}" selected>{{ cat.title }}</option>
+                                        {% else %}
+                                            <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                        {% endif %}
                                       {% endfor %}
                                   </select>
                                   {% if category_message != "" %}
@@ -82,14 +86,14 @@
                     <legend>{{ lang('article_settings') }}</legend>
                     <div class="clearfix">
                         <div class="input">
-                            <input type="checkbox" name="comments_allowed" id="comments_allowed" checked>
+                            <input type="checkbox" name="comments_allowed" id="comments_allowed" {% if comments_allowed %}checked{% endif %}>
                             {{ lang('comments_allowed') }}
                             <span class="help-inline">{{ lang('comments_hint') }}</span>
                         </div>
                     </div>
                     <div class="clearfix">
                         <div class="input">
-                            <input type="checkbox" name="published" id="published" checked>
+                            <input type="checkbox" name="published" id="published" {% if published %}checked{% endif %}>
                             {{ lang('published') }}
                             <span class="help-inline">{{ lang('published_hint') }}</span>
                         </div>

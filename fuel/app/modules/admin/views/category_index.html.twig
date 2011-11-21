@@ -4,7 +4,7 @@
 <div class="well">
     <h2>{{ lang('categories') }}</h2>
     
-    <a href="{{ uri('admin/categories/create') }}" class="btn success pull-right">
+    <a href="{{ uri('admin/categories/create') }}" class="btn pull-right primary">
         {{ lang('create_category') }}
     </a>
     
@@ -25,7 +25,7 @@
                     <a href="{{ uri('admin/categories/edit') }}?id={{ cat.id }}" class="btn primary">
                         {{ lang('edit') }}
                     </a>
-                    <a href="{{ uri('admin/categories/delete') }}?id={{ cat.id }}" class="btn danger">
+                    <a href="{{ uri('admin/categories/delete') }}?id={{ cat.id }}" class="btn">
                         {{ lang('delete') }}
                     </a>
                 </td>

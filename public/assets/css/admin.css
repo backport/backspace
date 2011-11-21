@@ -57,3 +57,10 @@ a:hover { color: #333; text-decoration: none; }
         );
     border: 1px solid #000;
 }
+
+input:focus,textarea:focus{
+    border-color:rgba(34,7,64,0.8);
+    -webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(34,7,64,0.6);
+    -moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(34,7,64,0.6);
+    box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(34,7,64,0.6);
+}

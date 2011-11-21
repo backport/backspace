@@ -42,4 +42,5 @@ return array(
     "password" => "Password",
     "login" => "Login",
     "log_in" => "Log me in",
+    "logout" => "Log me out",
 );

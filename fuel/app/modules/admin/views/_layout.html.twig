@@ -4,19 +4,19 @@
         <meta charset="utf-8">
         <title>{{ page_title }} | backspace blogging platform</title>
         <meta name="generator" content="backspace blogging platform">
-        
+
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
         <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-            {{ css('admin.css') }}
-            {{ js('jquery.min.js') }}
-            {% block javascript %}{% endblock %}
-        </head>
+        {{ css('admin.css') }}
+        {{ js('jquery.min.js') }}
+        {% block javascript %}{% endblock %}
+    </head>
 
-        <body>
-            <div class="topbar">
+    <body>
+        <div class="topbar">
             <div class="fill">
                 <div class="container-fluid">
                     <a class="brand" href="#">back<b>space</b></a>
@@ -42,11 +42,17 @@
                                 {{ lang('dashboard') }}
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ uri('admin/logout') }}">
+                                {{ img('adm-ico/shut-down.png') }}
+                                {{ lang('logout') }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <br><br>
-                
+
                 <div class="well">
                     <h3>{{ lang('contents') }}</h3>
                     <ul>
@@ -99,7 +105,7 @@
             </div>
             <div class="content">
                 {% block content %}
-                
+
                 {% endblock %}
             </div>
 

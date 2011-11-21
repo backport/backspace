@@ -39,39 +39,43 @@ class Controller_Articles extends AdminController
     {
         $id = \Input::get("id");
         
-        $cat = \Model_Category::find($id);
+        $article = \Model_Article::find($id);
         
-        if(!$cat instanceof \Model_Category)
+        if(!$article instanceof \Model_Article)
         {
-            throw new \Exception("Category {$id} not found!");
+            throw new \Exception("Article {$id} not found!");
         }
         
-        if($cat->delete())
+        if($article->delete())
         {
-            \Response::redirect("admin/categories");
+            \Response::redirect("admin/articles");
         }
         else
         {
-            throw new \Exception("could not delete category!");
+            throw new \Exception("could not delete article!");
         }
     }
     
     public function action_edit()
     {
-        $this->set_template("category_form");
+        $this->set_template("article_form");
         $this->set_page_title(\Lang::line("categories"));
         
         $id = \Input::get("id");
         
-        $cat = \Model_Category::find($id);
+        $article = \Model_Article::find($id);
         
-        if(!$cat instanceof \Model_Category)
+        if(!$article instanceof \Model_Article)
         {
-            throw new \Exception("Category {$id} not found!");
+            throw new \Exception("Article {$id} not found!");
         }
         
         $title_message = "";
         $slug_message = "";
+        $category_message = "";
+        $body_message = "";
+        $comments_allowed = false;
+        $published = false;
         
         if (\Input::method() === "POST")
         {
@@ -81,13 +85,24 @@ class Controller_Articles extends AdminController
             {
                 $title = $val->validated("title");
                 $slug = $val->validated("slug");
+                $category = $val->validated("category");
+                $preview = \Input::post("preview");
+                $body = $val->validated("body");
+                $comments_allowed = (bool) \Input::post("comments_allowed");
+                $published = (bool) \Input::post("published");
 
-                $cat->title = $title;
-                $cat->slug = $slug;
+                $article->user_id = $user[1];
+                $article->title = $title;
+                $article->slug = $slug;
+                $article->category_id = $category;
+                $article->preview = $preview;
+                $article->body = $body;
+                $article->comments_allowed = $comments_allowed;
+                $article->published = $published;
                 
-                if($cat->save())
+                if($article->save())
                 {
-                    \Response::redirect("admin/categories");
+                    \Response::redirect("admin/articles");
                 }
                 else
                 {
@@ -105,12 +120,27 @@ class Controller_Articles extends AdminController
                 {
                     $slug_message = $val->errors("slug")->get_message();
                 }
+                
+                if(is_object($val->errors("category")))
+                {
+                    $category_message = $val->errors("category")->get_message();
+                }
+                
+                if(is_object($val->errors("body")))
+                {
+                    $body_message = $val->errors("body")->get_message();
+                }
             }
         }
         else
         {
-            $title_value = $cat->title;
-            $slug_value = $cat->slug;
+            $title_value = $article->title;
+            $slug_value = $article->slug;
+            $category_value = $article->category_id;
+            $preview_value = $article->preview;
+            $body_value = $article->body;
+            $comments_allowed = $article->comments_allowed;
+            $published = $article->published;
         }
 
         $this->get_view()->title_message = $title_message;
@@ -119,7 +149,21 @@ class Controller_Articles extends AdminController
         $this->get_view()->slug_message = $slug_message;
         $this->get_view()->slug_value = $slug_value;
         
-        $this->get_view()->id = $cat->id;
+        $this->get_view()->category_message = $category_message;
+        $this->get_view()->category_value = $category_value;
+        
+        $this->get_view()->preview_value = $preview_value;
+        
+        $this->get_view()->body_message = $body_message;
+        $this->get_view()->body_value = $body_value;
+        
+        $this->get_view()->comments_allowed = $comments_allowed;
+        $this->get_view()->published = $published;
+        
+        $this->get_view()->id = $article->id;
+        
+        $cats = \Model_Category::find_all();
+        $this->get_view()->cats = $cats;
         
         return \Response::forge($this->get_view());
     }
