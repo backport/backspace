@@ -1,0 +1,41 @@
+{% extends "_layout.html.twig" %}
+
+{% block content %}
+<div class="well">
+    <h2>{{ lang('categories') }}</h2>
+    
+    <a href="{{ uri('admin/categories/create') }}" class="btn success pull-right">
+        {{ lang('create_category') }}
+    </a>
+    
+    <table class="zebra-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ lang('title') }}</th>
+                <th>{{ lang('operations') }}</th>
+            </tr>
+        </thead>    
+        <tbody>
+            {% for cat in cats %}
+            <tr>
+                <td>{{ cat.id }}</td>
+                <td>{{ cat.title }}</td>
+                <td>
+                    <a href="{{ uri('admin/categories/edit') }}?id={{ cat.id }}" class="btn primary">
+                        {{ lang('edit') }}
+                    </a>
+                    <a href="{{ uri('admin/categories/delete') }}?id={{ cat.id }}" class="btn danger">
+                        {{ lang('delete') }}
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">{{ lang('no_categories_found') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ page_title }} | backspace blogging platform</title>
+        <meta name="generator" content="backspace blogging platform">
+        
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+        <style type="text/css">
+            .topbar-inner, .topbar .fill { background-image: linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                           background-image: -o-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                           background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                           background-image: -webkit-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                           background-image: -ms-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+
+                                           background-image: -webkit-gradient(
+                                               linear,
+                                               left bottom,
+                                               left top,
+                                               color-stop(0, rgb(0,0,0)),
+                                               color-stop(1, rgb(34,7,64))
+                                               ); }
+
+            body { background-color: #191518; }
+            footer { color: #fff; border: 0; text-align: center; }
+
+            .content-wrap { margin-top: 60px; }
+
+            .sidebar .well { margin: 0; padding: 0; }
+
+            .sidebar .well ul { margin: 10px; list-style-type: none; }
+
+            a { color: rgb(34,7,64); }
+            a:hover { color: #333; text-decoration: none; }
+
+            .sidebar .well ul li a img { width: 18px; height: 18px; }
+
+            .sidebar .well h3 { border-radius: 4px; background-image: linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                background-image: -o-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                background-image: -webkit-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+                                background-image: -ms-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(34,7,64) 100%);
+
+                                background-image: -webkit-gradient(
+                                    linear,
+                                    left bottom,
+                                    left top,
+                                    color-stop(0, rgb(0,0,0)),
+                                    color-stop(1, rgb(34,7,64))
+                                    );  border-bottom-right-radius: 0; border-bottom-left-radius: 0; color: #fff; text-shadow: 1px 1px 4px #000; font-size: 14px; padding-left: 10px; }
+            </style>
+            {{ js('jquery.min.js') }}
+            {% block javascript %}{% endblock %}
+        </head>
+
+        <body>
+            <div class="topbar">
+            <div class="fill">
+                <div class="container-fluid">
+                    <a class="brand" href="#">back<b>space</b></a>
+                    <div class="pull-right">
+                        <ul class="nav">
+                            <li class="active"><a href="#">{{ lang('blog_admin') }}</a></li>
+                            <li><a href="/">{{ lang('visit_blog') }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid content-wrap">
+            <div class="sidebar">
+                <div class="well">
+                    <h3>{{ lang('administrator') }}</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ uri('admin/dashboard') }}">
+                                {{ img('adm-ico/cloud-filled.png') }}
+                                {{ lang('dashboard') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <br><br>
+                
+                <div class="well">
+                    <h3>{{ lang('contents') }}</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ uri('admin/articles/create') }}">
+                                {{ img('adm-ico/world.png') }}
+                                {{ lang('write_article') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ uri('admin/articles') }}">
+                                {{ img('adm-ico/search.png') }}
+                                {{ lang('article_search') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ uri('admin/categories') }}">
+                                {{ img('adm-ico/bookmark.png') }}
+                                {{ lang('categories') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ uri('admin/comments') }}">
+                                {{ img('adm-ico/chat-.png') }}
+                                {{ lang('search_comments') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <br><br>
+
+                <div class="well">
+                    <h3>{{ lang('user_management') }}</h3>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                {{ img('adm-ico/multi-agents.png') }}
+                                {{ lang('manage_users') }} 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {{ img('adm-ico/ID.png') }}
+                                {{ lang('privilege_overview') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                {% block content %}
+                
+                {% endblock %}
+            </div>
+
+            <br style="clear:both;">
+
+
+            <footer>
+                <p>&copy; 2011 back<strong>space</strong> blogging platform</p>
+            </footer>
+        </div>
+
+    </body>
+</html>

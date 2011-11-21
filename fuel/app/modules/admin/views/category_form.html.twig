@@ -1,0 +1,54 @@
+{% extends "_layout.html.twig" %}
+
+{% block javascript %}
+<script>
+    $(document).ready(function() {
+        $("#title").blur(function() {
+           $.getJSON("{{ uri('admin/ajax/slug') }}", {
+               title: $("#title").val()
+           },
+           function(res) {
+                $("#slug").val(res);
+           }); 
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h1>{{ lang('category') }}</h1>
+    <form action="{{ current_uri() }}{% if id != '' %}?id={{ id }}{% endif %}" method="POST" class="form-stacked">
+        <fieldset>
+            <legend>{{ lang('create_category') }}</legend>
+            <div class="clearfix {% if title_message != "" %}error{% endif %}">
+                <label for="title">{{ lang('title') }} *</label>
+                <div class="input">
+                    <input type="text" class="xlinput" name="title" id="title" value="{{ title_value }}">
+                    {% if title_message != "" %}
+                        <span class="help-inline">{{ title_message }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clearfix {% if slug_message != "" %}error{% endif %}">
+                <label for="title">{{ lang('slug') }} *</label>
+                <div class="input">
+                    <input type="text" class="xlinput" name="slug" id="slug" value="{{ slug_value }}">
+                    {% if slug_message != "" %}
+                        <span class="help-inline">{{ slug_message }}</span>
+                    {% endif %}
+                </div>
+                
+            </div>
+            <div class="actions">
+                <input type="reset" class="btn" value="{{ lang('reset') }}">
+                <input type="submit" class="btn primary" value="{{ lang('apply') }}">
+            </div>
+        </fieldset>
+    </form>
+    
+    <span class="help-block">
+        * {{ lang('required_fields_hint') }}
+    </span>
+</div>
+{% endblock %}
