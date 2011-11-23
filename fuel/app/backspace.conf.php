@@ -8,3 +8,5 @@ define("BS_DEV_DBPASS", "");
 
 define("BS_PASSWORD_HASH", "backspace");
 define("BS_LOGIN_HASH", "backspace");
+
+define("BS_USE_REWRITING", true);

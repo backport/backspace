@@ -41,7 +41,7 @@ return array(
 	 *
 	 * Set this to false or remove if you using mod_rewrite.
 	 */
-	'index_file'  => 'index.php',
+	'index_file'  => ((defined("BS_USE_REWRITING") && true === BS_USE_REWRITING) ? false : "index.php"),
 
 	'profiling'  => false,
 

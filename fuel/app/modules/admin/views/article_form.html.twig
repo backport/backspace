@@ -2,6 +2,12 @@
 
 {% block javascript %}
 <script>
+    function append_tag(tags, to_append, suggest_tag) {
+        $("#tags").val(tags + to_append.replace(suggest_tag, '') + ',');
+        $("#suggestion").html("&nbsp;");
+        $("#tags").focus();
+    }
+    
     $(document).ready(function() {
         $("#title").blur(function() {
             $.getJSON("{{ uri('admin/ajax/slug') }}", {
@@ -31,6 +37,45 @@
                 $("#content_article_content").fadeIn("fast");
             });
         });
+        
+        var last_length = 0;
+        
+        $("#tags").keyup(function() {
+            var tags = $("#tags").val();
+            
+            if(tags.charAt(tags.length-1) != ',')
+            {
+            
+                var tag_data = tags.split(",");
+                var last_index = tag_data.length - 1;
+
+                var suggest_tag = tag_data[last_index];
+
+                $.getJSON("{{ uri('admin/ajax/tagsuggest.json') }}", {
+                    title: suggest_tag
+                }, function(res) {
+                    if(null != res)
+                    {
+                        var suggestion_html = "";
+                    
+                        $.each(res, function(key, val) {
+                            suggestion_html += '<a href="#" class="tag-suggestion" onclick="append_tag(\'' + tags + '\', \'' + val + '\', \'' + suggest_tag + '\')">'+val+'</a>&nbsp;&nbsp;&nbsp;';
+                        });
+                    
+                        $("#suggestion").html(suggestion_html);
+                    }
+                    else
+                    {
+                        $("#suggestion").html("{{ lang('no_suggestions') }}");
+                    }
+                });
+            }
+            else
+            {
+                $("#suggestion").html("{{ lang('no_suggestions') }}");
+            }
+        });
+        
     });
 </script>
 {% endblock %}
@@ -69,11 +114,11 @@
                               <div class="input">
                                   <select name="category" id="category">
                                       {% for cat in cats %}
-                                        {% if category_value == cat.id %}
-                                            <option value="{{ cat.id }}" selected>{{ cat.title }}</option>
-                                        {% else %}
-                                            <option value="{{ cat.id }}">{{ cat.title }}</option>
-                                        {% endif %}
+                                      {% if category_value == cat.id %}
+                                      <option value="{{ cat.id }}" selected>{{ cat.title }}</option>
+                                      {% else %}
+                                      <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                      {% endif %}
                                       {% endfor %}
                                   </select>
                                   {% if category_message != "" %}
@@ -87,18 +132,28 @@
                     <div class="clearfix">
                         <div class="input">
                             <input type="checkbox" name="comments_allowed" id="comments_allowed" {% if comments_allowed %}checked{% endif %}>
-                            {{ lang('comments_allowed') }}
-                            <span class="help-inline">{{ lang('comments_hint') }}</span>
+                                   {{ lang('comments_allowed') }}
+                                   <span class="help-inline">{{ lang('comments_hint') }}</span>
                         </div>
                     </div>
                     <div class="clearfix">
                         <div class="input">
                             <input type="checkbox" name="published" id="published" {% if published %}checked{% endif %}>
-                            {{ lang('published') }}
-                            <span class="help-inline">{{ lang('published_hint') }}</span>
+                                   {{ lang('published') }}
+                                   <span class="help-inline">{{ lang('published_hint') }}</span>
                         </div>
                     </div>
-
+                </fieldset>
+                <fieldset>
+                    <legend>{{ lang('article_tags') }}</legend>
+                    <div class="clearfix">
+                        <label for="tags">{{ lang('tags') }}</label>
+                        <div class="input">
+                            <input type="text" class="xlinput" style="width: 40%;" name="tags" id="tags" placeholder="{{ lang('article_tags_placeholder') }}" value="{{ tags_value }}" autocomplete="off" a>
+                            <div class="help-inline suggest_box">{{ lang('suggestions') }}: <span id="suggestion">{{ lang('no_suggestions') }}</span></div>
+                        </div>
+                        <span class="help-inline">{{ lang('tags_separation_hint') }}</span>
+                    </div>
                 </fieldset>
             </div>
             <div id="content_article_content">

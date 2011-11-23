@@ -43,4 +43,10 @@ return array(
     "login" => "Login",
     "log_in" => "Log me in",
     "logout" => "Log me out",
+    "article_tags" => "Article  tags",
+    "tags" => "Tags",
+    "article_tags_placeholder" => "woodchuck,could chuck,wood",
+    "tags_separation_hint" => "Tags should be separated using a comma",
+    "suggestions" => "Suggestions",
+    "no_suggestions" => "No suggestions found.",
 );
