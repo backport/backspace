@@ -1,0 +1,61 @@
+{% extends "_layout.html.twig" %}
+
+{% block javascript %}
+<script>
+    $(document).ready(function() {
+        
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h1>{{ lang('my_account') }}</h1>
+    <form action="{{ current_uri() }}" method="POST" class="form-stacked">
+        <fieldset>
+            <legend>{{ lang('my_account') }}</legend>
+            <div class="clearfix {% if username_message != "" %}error{% endif %}">
+                <label for="username">{{ lang('username') }} *</label>
+                <div class="input">
+                    {{ username }}
+                </div>
+            </div>
+            <div class="clearfix {% if email_message != "" %}error{% endif %}">
+                <label for="username">{{ lang('email') }} *</label>
+                <div class="input">
+                    <input type="text" class="xlinput" name="email" id="email" value="{{ email_value }}">
+                    {% if email_message != "" %}
+                        <span class="help-inline">{{ email_message }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clearfix {% if old_password_message != "" %}error{% endif %}">
+                <label for="old_password">{{ lang('old_password') }} *</label>
+                <div class="input">
+                    <input type="password" class="xlinput" name="old_password" id="old_password">
+                    {% if old_password_message != "" %}
+                        <span class="help-inline">{{ old_password_message }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clearfix {% if password_message != "" %}error{% endif %}">
+                <label for="password">{{ lang('password') }} *</label>
+                <div class="input">
+                    <input type="password" class="xlinput" name="password" id="password">
+                    {% if password_message != "" %}
+                        <span class="help-inline">{{ password_message }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="actions">
+                <input type="reset" class="btn" value="{{ lang('reset') }}">
+                <input type="submit" class="btn primary" value="{{ lang('apply') }}">
+            </div>
+        </fieldset>
+    </form>
+    
+    <span class="help-block">
+        * {{ lang('required_fields_hint') }}
+    </span>
+</div>
+{% endblock %}

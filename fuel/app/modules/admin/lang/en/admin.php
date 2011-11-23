@@ -49,4 +49,9 @@ return array(
     "tags_separation_hint" => "Tags should be separated using a comma",
     "suggestions" => "Suggestions",
     "no_suggestions" => "No suggestions found.",
+    "my_account" => "My account",
+    "email" => "Email Address",
+    "old_password" => "Old password",
+    "email_changed_email_subject" => "Your email has been connected with a blog account",
+    "email_changed_email_body" => "to be added",
 );
