@@ -1,0 +1,24 @@
+{% extends style_template %}
+
+{% block content %}
+    {% for article in articles %}
+    <article>
+        <h2>
+            <a href="{{ uri(article.slug) }}">{{ article.title }}</a>
+            <small>
+                posted by <a href="#">{{ article.author.username }}</a>
+                on {{ article.get_formatted_creation_date() }}
+            </small>
+        </h2>
+        <p>
+            {{ article.get_preview() }}
+        </p>
+        <p>
+            <a href="{{ uri(article.slug) }}" class="btn pull-right">{{ lang('read_more') }}</a>
+        </p>
+    </article>
+    
+    <br><br><br><br>
+
+    {% endfor %}
+{% endblock %}

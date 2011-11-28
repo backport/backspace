@@ -1,7 +1,10 @@
 <?php
+
 return array(
-	'_root_'  => 'welcome/index',  // The default route
-	'_404_'   => 'welcome/404',    // The main 404 route
-	
-	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
+    
+    '_root_' => 'blog/index',
+    '_404_' => 'errors/404',
+    
+    // fallback routing: route via slug
+    '(:segment)' => 'article/index/$1',
 );

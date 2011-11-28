@@ -185,7 +185,7 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			'orm', 'parser','auth', 
+			'orm', 'parser','auth', 'email',
 		),
 
 		/**

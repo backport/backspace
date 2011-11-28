@@ -1,0 +1,21 @@
+{% extends style_template %}
+
+{% block content %}
+    <article>
+        <h2>
+            <a href="{{ uri(article.slug) }}">{{ article.title }}</a>
+            <small>
+                posted by <a href="#">{{ article.author.username }}</a>
+                on {{ article.get_formatted_creation_date() }}
+            </small>
+        </h2>
+
+        {{ article.body }}
+
+        {% if article.comments_allowed %}
+        <p>
+            post ur comments here
+        </p>
+        {% endif %}
+    </article>
+{% endblock %}

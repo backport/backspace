@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ page_title }}</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <style>
+            @import url('http://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+        </style>
+
+        {{ css('bootstrap.css') }}
+        {{ css('themes/default/default.css') }}
+
+        {{ js('themes/default/modernizr.custom.js') }}
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="row">
+                    <div class="span10">
+                        <h1>your site name</h1>
+                    </div>
+                    <div class="span6">
+                        <form class="pull-right">
+                            <input type="text" placeholder="Search terms go here...">
+                            <input type="submit" class="btn primary" value="Search">
+                        </form>
+                    </div>
+                </div>
+                <nav>
+                    <div class="row">
+                        <div class="span16">
+                            <div id="main-navigation">
+                                <ul>
+                                    <li><a href="#">Example link 0</a></li>
+                                    <li class="active"><a href="#">Active link</a></li>
+                                    <li><a href="#">Example link 2</a></li>
+                                    <li><a href="#">Example link 3</a></li>
+                                    <li><a href="#">Example link 4</a></li>
+                                </ul><br style="clear: both;">
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="span16">
+                        &nbsp;
+                    </div>
+                </div>
+            </header>
+
+            <div class="row">
+                <div class="span12">
+                    {% block content %}
+                    <article>
+                        <h2>
+                            <a href="#">
+                                Some sample content
+                            </a>
+                            <small>
+                                posted by <a href="#">spike</a>
+                                just now
+                            </small>
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Praesent ac tellus non elit pharetra sagittis sed vel orci. 
+                            Nunc rhoncus dictum nisl, tempor rutrum neque rutrum ut. 
+                            Nullam ultrices viverra orci vel imperdiet. Nullam at 
+                            risus vitae dui sollicitudin faucibus sed id nibh. 
+                            Vestibulum a urna a augue ultricies tempor at eget nunc. 
+                            In consectetur auctor velit vel accumsan. In ante urna, 
+                            porta eu gravida sit amet, cursus ut tortor. Proin at ante 
+                            non neque pellentesque interdum vel hendrerit ante.
+                        </p>
+                        <blockquote>
+                            <p>
+                                This is a sample quote styled by the great twitter css framework &quot;bootstrap&quot;
+                            </p>
+                            <small>Author name goes here</small>
+                        </blockquote>
+                    </article>
+
+                    <form>
+                        <fieldset>
+                            <legend>Fieldset legend</legend>
+                            <div class="clearfix">
+                                <label for="example-field">Example field *</label>
+                                <div class="input">
+                                    <input type="text" class="xlarge" id="example-field" name="example-field" placeholder="placeholder to be replaced">
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <input type="reset" class="btn" value="Reset form contents">
+                                <input type="submit" class="btn primary" value="Submit form contents">
+                            </div>
+                        </fieldset>
+                    </form>
+                    {% endblock %}
+
+                </div>
+                <div class="span4">
+                    <aside>
+                        <h3>&raquo; Features</h3>
+                        <p>
+                            <strong>Backport Basic</strong> is a simple and clean
+                            HTML5 web page template with this features:
+                        </p>
+                        <ul>
+                            <li>Fully HTML5 compliant</li>
+                            <li>CSS3 enabled</li>
+                            <li>Cleaned HTML code</li>
+                            <li>No pictures &minus; fast loading time</li>
+                            <li>Clean Google Web Fonts for h1</li>
+                            <li>1024x768 compliant 940px on a 16 field grid</li>
+                            <li>Accessible</li>
+                            <li>Respecting web standards</li>
+                            <li>Open at the source :-)</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <footer>
+                <div class="row">
+                    <div class="span-one-third">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Example category A</a></li>
+                            <li><a href="#">Example category B</a></li>
+                            <li><a href="#">Example category C</a></li>
+                        </ul>
+                    </div>
+                    <div class="span-one-third">
+                        <h3>Blogroll</h3>
+                        <ul>
+                            <li><a href="#">Blogroll item 1</a></li>
+                            <li><a href="#">Blogroll item 2</a></li>
+                            <li><a href="#">Blogroll item 3</a></li>
+                        </ul>
+                    </div>
+                    <div class="span-one-third">
+                        <h3>Some address</h3>
+                        <address>
+                            <strong>my name</strong><br>
+                            my street 4<br>
+                            my zip and my city<br>
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span16 center">
+                        &copy; 2011 your site name
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

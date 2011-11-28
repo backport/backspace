@@ -106,6 +106,13 @@ class Controller_Articles extends AdminController
                 $published = (bool) \Input::post("published");
                 $tags = \Input::post("tags");
 
+                $user = \Auth::instance()->get_user_id();
+
+                if (!isset($user[1]))
+                {
+                    throw new \Exception("Could not get userId");
+                }
+                
                 $article->user_id = $user[1];
                 $article->title = $title;
                 $article->slug = $slug;
