@@ -22,12 +22,6 @@ class FrontendController extends \CoreController
         $template = "default/" . $template;
 
         parent::set_template($template);
-
-        // @todo
-        $this->_view->style_template = "default/_styles/night.html.twig";
-        
-        $project_title = "@TODO PAGE TITLE";
-        $this->_view->project_title = $project_title;
     }
 
 }

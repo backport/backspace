@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{{ page_title }}</title>
+        <title>{{ page_title }} :: {{ config('global.page_title') }}</title>
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -20,7 +20,7 @@
             <header>
                 <div class="row">
                     <div class="span10">
-                        <h1>your site name</h1>
+                        <h1>{{ config('global.page_title') }}</h1>
                     </div>
                     <div class="span6">
                         <form class="pull-right">
