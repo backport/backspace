@@ -1,0 +1,26 @@
+            
+* { color: #fff; }
+
+body { color: #fff; background-image: linear-gradient(bottom, rgb(60,60,60) 58%, rgb(0,0,0) 100%);
+       background-image: -o-linear-gradient(bottom, rgb(60,60,60) 58%, rgb(0,0,0) 100%);
+       background-image: -moz-linear-gradient(bottom, rgb(60,60,60) 58%, rgb(0,0,0) 100%);
+       background-image: -webkit-linear-gradient(bottom, rgb(60,60,60) 58%, rgb(0,0,0) 100%);
+       background-image: -ms-linear-gradient(bottom, rgb(60,60,60) 58%, rgb(0,0,0) 100%);
+
+       background-image: -webkit-gradient(
+           linear,
+           left bottom,
+           left top,
+           color-stop(0.58, rgb(60,60,60)),
+           color-stop(1, rgb(0,0,0))
+           ); }
+
+div#main-navigation a { color: #333 !important; }
+
+a { color: #ccc; }
+
+.actions { background-color: #333; }
+
+.btn { color: #333; }
+
+ul, li, h1, h2, h3, h4, label, fieldset legend { color: #fff; }

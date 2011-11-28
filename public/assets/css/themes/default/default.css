@@ -1,0 +1,57 @@
+            
+
+body { color: #333; background-image: linear-gradient(bottom, rgb(255,255,255) 58%, rgb(225,228,230) 100%);
+       background-image: -o-linear-gradient(bottom, rgb(255,255,255) 58%, rgb(225,228,230) 100%);
+       background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 58%, rgb(225,228,230) 100%);
+       background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 58%, rgb(225,228,230) 100%);
+       background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 58%, rgb(225,228,230) 100%);
+
+       background-image: -webkit-gradient(
+           linear,
+           left bottom,
+           left top,
+           color-stop(0.58, rgb(255,255,255)),
+           color-stop(1, rgb(225,228,230))
+           ); }
+
+.container { margin-top: 20px; margin-bottom: 20px; }
+
+#main-navigation { border: 1px solid #333; border-radius: 5px; background-image: linear-gradient(bottom, rgb(60,60,61) 0%, rgb(102,102,102) 100%);
+                   background-image: -o-linear-gradient(bottom, rgb(60,60,61) 0%, rgb(102,102,102) 100%);
+                   background-image: -moz-linear-gradient(bottom, rgb(60,60,61) 0%, rgb(102,102,102) 100%);
+                   background-image: -webkit-linear-gradient(bottom, rgb(60,60,61) 0%, rgb(102,102,102) 100%);
+                   background-image: -ms-linear-gradient(bottom, rgb(60,60,61) 0%, rgb(102,102,102) 100%);
+
+                   background-image: -webkit-gradient(
+                       linear,
+                       left bottom,
+                       left top,
+                       color-stop(0, rgb(60,60,61)),
+                       color-stop(1, rgb(102,102,102))
+                       ); 
+}
+
+#main-navigation ul { list-style-type: none; margin: 0; padding: 0; }
+
+#main-navigation ul li { background-color: #fff; padding: 8px; padding-left: 15px; padding-right: 15px; margin: 5px; border-radius: 5px; float: left; }
+
+.center { text-align: center; }
+
+#main-navigation ul li.active { background-image: linear-gradient(bottom, rgb(141,184,0) 0%, rgb(189,255,36) 100%);
+                                background-image: -o-linear-gradient(bottom, rgb(141,184,0) 0%, rgb(189,255,36) 100%);
+                                background-image: -moz-linear-gradient(bottom, rgb(141,184,0) 0%, rgb(189,255,36) 100%);
+                                background-image: -webkit-linear-gradient(bottom, rgb(141,184,0) 0%, rgb(189,255,36) 100%);
+                                background-image: -ms-linear-gradient(bottom, rgb(141,184,0) 0%, rgb(189,255,36) 100%);
+
+                                background-image: -webkit-gradient(
+                                    linear,
+                                    left bottom,
+                                    left top,
+                                    color-stop(0, rgb(141,184,0)),
+                                    color-stop(1, rgb(189,255,36))
+                                    ); }
+
+#main-navigation ul li.active a { color: #fff; }
+#main-navigation ul li.active a:hover { text-decoration: none; }
+
+h1 { font-family: 'Ubuntu Condensed', sans-serif; text-transform: uppercase; font-size: 36px; letter-spacing: -2px }
